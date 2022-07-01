@@ -17,8 +17,8 @@ use App\Http\Controllers\CourseController;
 
 Route::get('/', HomeController::class);
 
-Route::get('courses', [CourseController::class, 'index']);
-
-Route::get('courses/create', [CourseController::class, 'create']);
-
-Route::get('courses/{course}', [CourseController::class, 'show']);
+Route::controller(CourseController::class)->group(function() {
+    Route::get('courses', 'index');
+    Route::get('courses/create', 'create');
+    Route::get('courses/{course}', 'show');
+});
