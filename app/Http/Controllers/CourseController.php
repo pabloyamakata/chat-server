@@ -7,14 +7,15 @@ use Illuminate\Http\Request;
 class CourseController extends Controller
 {
     public function index() {
-        return 'Welcome to my courses!';
+        return view('courses.index');
     }
 
     public function create() {
-        return 'On this page you can create new courses!';
+        return view('courses.create');
     }
 
     public function show($course) {
-        return "This page will show a specific course like $course!";
+        // Use compact() when there are many variables besides $course
+        return view('courses.show', ['course' => $course]);
     }
 }
