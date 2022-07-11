@@ -20,5 +20,6 @@ Route::get('/', HomeController::class)->name('welcome');
 Route::controller(CourseController::class)->group(function() {
     Route::get('courses', 'index')->name('courses.index');
     Route::get('courses/create', 'create')->name('courses.create');
+    Route::post('courses', 'store')->name('courses.store');
     Route::get('courses/{id}', 'show')->name('courses.show');
 });
