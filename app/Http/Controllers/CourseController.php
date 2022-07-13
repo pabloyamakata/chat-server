@@ -30,4 +30,18 @@ class CourseController extends Controller
         // Use compact() when there are many variables besides $course
         return view('courses.show', ['course' => $course]);
     }
+
+    public function edit($id) {
+        $course = Course::find($id);
+        return view('courses.edit', ['course' => $course]);
+    }
+
+    public function update(Request $request, $id) {
+        $course = Course::find($id);
+        $course->name = $request->name;
+        $course->description = $request->description;
+        $course->category = $request->category;
+        $course->save();
+        return redirect()->route('courses.show', $course->id);
+    }
 }
