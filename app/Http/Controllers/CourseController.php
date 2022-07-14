@@ -44,6 +44,13 @@ class CourseController extends Controller
     }
 
     public function update(Request $request, $id) {
+
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'category' => 'required'
+        ]);
+
         $course = Course::find($id);
         $course->name = $request->name;
         $course->description = $request->description;
