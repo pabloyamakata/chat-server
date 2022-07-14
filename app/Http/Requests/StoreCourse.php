@@ -13,7 +13,7 @@ class StoreCourse extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,21 @@ class StoreCourse extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|string|max:150',
+            'description' => 'required|string|max:700',
+            'category' => 'required|string|max:50'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Provide a name for this course',
+            'description.required' => 'Provide a description for this course',
+            'category.required' => 'Assign a category to this course',
+            // 'name.max' => '...',
+            // 'description.max' => '...',
+            // 'category.max' => '...'
         ];
     }
 }
