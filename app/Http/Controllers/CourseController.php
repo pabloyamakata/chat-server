@@ -18,11 +18,25 @@ class CourseController extends Controller
     }
 
     public function store(StoreCourse $request) {
-        $course = new Course();
-        $course->name = $request->name;
-        $course->description = $request->description;
-        $course->category = $request->category;
-        $course->save();
+        
+        $course = Course::create($request->all());
+
+        // Same as...
+
+        // $course = Course::create([
+        //     'name' => $request->name,
+        //     'description' => $request->description,
+        //     'category' => $request->category
+        // ]);
+
+        // This last option is good but not the most efficient
+        
+        // $course = new Course();
+        // $course->name = $request->name;
+        // $course->description = $request->description;
+        // $course->category = $request->category;
+        // $course->save();
+        
         return redirect()->route('courses.show', $course->id);
     }
 
@@ -46,10 +60,13 @@ class CourseController extends Controller
         ]);
 
         $course = Course::find($id);
-        $course->name = $request->name;
-        $course->description = $request->description;
-        $course->category = $request->category;
-        $course->save();
+        $course->update($request->all());
+        
+        // $course->name = $request->name;
+        // $course->description = $request->description;
+        // $course->category = $request->category;
+        // $course->save();
+        
         return redirect()->route('courses.show', $course->id);
     }
 }
