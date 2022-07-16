@@ -16,13 +16,21 @@ use App\Http\Controllers\CourseController;
 */
 
 Route::get('/', HomeController::class)->name('welcome');
+Route::resource('courses', CourseController::class);
+
+/*
+
+If you follow the naming conventions, route resource
+allows you to create all the routes in one line of code instead of doing this...
 
 Route::controller(CourseController::class)->group(function() {
     Route::get('courses', 'index')->name('courses.index');
     Route::get('courses/create', 'create')->name('courses.create');
     Route::post('courses', 'store')->name('courses.store');
-    Route::get('courses/{id}', 'show')->name('courses.show');
-    Route::get('courses/{id}/edit', 'edit')->name('courses.edit');
-    Route::put('courses/{id}', 'update')->name('courses.update');
-    Route::delete('courses/{id}', 'destroy')->name('courses.destroy');
+    Route::get('courses/{course}', 'show')->name('courses.show');
+    Route::get('courses/{course}/edit', 'edit')->name('courses.edit');
+    Route::put('courses/{course}', 'update')->name('courses.update');
+    Route::delete('courses/{course}', 'destroy')->name('courses.destroy');
 });
+
+*/
