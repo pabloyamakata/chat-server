@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>On this page you can edit a course!</h1>
-    <form action={{ route('courses.update', $course->id); }} method="POST">
+    <form action={{ route('courses.update', $course); }} method="POST">
         
         @csrf {{-- Sends a token to prevent csrf --}}
         
