@@ -37,21 +37,19 @@ class CourseController extends Controller
         // $course->category = $request->category;
         // $course->save();
         
-        return redirect()->route('courses.show', $course->id);
+        return redirect()->route('courses.show', $course);
     }
 
-    public function show($id) {
-        $course = Course::find($id);
+    public function show(Course $course) {
         // Use compact() when there are many variables besides $course
         return view('courses.show', ['course' => $course]);
     }
 
-    public function edit($id) {
-        $course = Course::find($id);
+    public function edit(Course $course) {
         return view('courses.edit', ['course' => $course]);
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, Course $course) {
 
         $request->validate([
             'name' => 'required',
@@ -59,7 +57,6 @@ class CourseController extends Controller
             'category' => 'required'
         ]);
 
-        $course = Course::find($id);
         $course->update($request->all());
         
         // $course->name = $request->name;
@@ -67,11 +64,10 @@ class CourseController extends Controller
         // $course->category = $request->category;
         // $course->save();
         
-        return redirect()->route('courses.show', $course->id);
+        return redirect()->route('courses.show', $course);
     }
 
-    public function destroy($id) {
-        $course = Course::find($id);
+    public function destroy(Course $course) {
         $course->delete();
         return redirect()->route('courses.index');
     }
